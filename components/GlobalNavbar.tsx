@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { GiHamburgerMenu } from "react-icons/gi"
-import { FiX, FiLock, FiArrowRight, FiUser, FiSettings, FiChevronDown } from "react-icons/fi"
+import { FiX, FiArrowRight } from "react-icons/fi"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 
@@ -61,7 +61,7 @@ export default function GlobalNavbar() {
 
   return (
     <>
-      {/* TRIGGERS */}
+      {/* MENU TRIGGER */}
       <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="fixed top-8 left-8 z-100">
         <button
           onClick={() => {
@@ -82,15 +82,6 @@ export default function GlobalNavbar() {
         </button>
       </motion.div>
 
-      <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="fixed top-8 right-8 z-100">
-        <button
-          onClick={() => handleNavigation("/login", "Account")}
-          className="px-6 md:px-8 py-3.5 md:py-4 bg-black text-white rounded-3xl text-[10px] font-black uppercase tracking-widest hover:bg-red-900 transition-all shadow-2xl flex items-center gap-3 active:scale-95"
-        >
-          <FiLock size={14} /> Account
-        </button>
-      </motion.div>
-
       {/* MENU OVERLAY */}
       <AnimatePresence>
         {isOpen && (
@@ -98,7 +89,6 @@ export default function GlobalNavbar() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-90 flex justify-center overflow-y-auto bg-white/95 backdrop-blur-2xl"
           >
-            {/* Klik buiten menu = sluiten + tracking */}
             <div
               className="absolute inset-0 z-0"
               onClick={() => closeMenu("klik buiten menu")}
@@ -106,7 +96,7 @@ export default function GlobalNavbar() {
 
             <div className="relative z-10 w-full max-w-6xl grid md:grid-cols-2 gap-12 md:gap-20 px-8 py-32 md:py-40 items-start">
 
-              {/* LINKS: Hoofdmenu met Active State */}
+              {/* LINKS: Hoofdmenu */}
               <div className="flex flex-col space-y-2 md:sticky md:top-40">
                 {[
                   { name: "Home", path: "/home" },
@@ -150,7 +140,7 @@ export default function GlobalNavbar() {
                   className="flex items-center justify-between w-full text-[10px] font-black uppercase tracking-[0.5em] text-gray-400 hover:text-red-900 transition-colors group"
                 >
                   <span className="group-hover:translate-x-1 transition-transform">Projecten ({sortedProjects.length})</span>
-                  <FiChevronDown className={`transition-transform duration-500 text-lg ${isProjectOpen ? "rotate-180" : ""}`} />
+                  <FiArrowRight className={`transition-transform duration-500 text-lg ${isProjectOpen ? "rotate-90" : ""}`} />
                 </button>
 
                 <div className={`grid transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${isProjectOpen ? "grid-rows-[1fr] opacity-100 mt-8" : "grid-rows-[0fr] opacity-0 mt-0"}`}>
@@ -170,22 +160,6 @@ export default function GlobalNavbar() {
                       ))}
                     </div>
                   </div>
-                </div>
-
-                {/* Footer Acties */}
-                <div className="pt-8 mt-6 border-t border-gray-100 grid grid-cols-2 gap-4">
-                  <button
-                    onClick={() => handleNavigation("/admin", "Admin")}
-                    className="flex items-center justify-center gap-2 py-4 bg-black text-white rounded-[2rem] text-[9px] font-black uppercase tracking-widest hover:bg-red-900 transition-all shadow-lg hover:-translate-y-0.5"
-                  >
-                    <FiSettings size={14} /> Admin
-                  </button>
-                  <button
-                    onClick={() => handleNavigation("/userlandingspage", "Profile")}
-                    className="flex items-center justify-center gap-2 py-4 bg-gray-50 text-gray-900 rounded-[2rem] text-[9px] font-black uppercase tracking-widest hover:bg-red-900 hover:text-white transition-all"
-                  >
-                    <FiUser size={14} /> Profile
-                  </button>
                 </div>
               </motion.div>
             </div>

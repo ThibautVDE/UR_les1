@@ -61,6 +61,28 @@ export default function Footer() {
           </p>
         </div>
 
+        {/* Navigatie */}
+        <div className="space-y-4">
+          <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/40">Navigatie</p>
+          <div className="space-y-3">
+            {[
+              { label: "Home", href: "/home" },
+              { label: "Portfolio", href: "/portfolio" },
+              { label: "Over mij", href: "/over_mij" },
+              { label: "Contact", href: "/contact" },
+            ].map((item) => (
+              <button
+                key={item.href}
+                onClick={() => handleInternalLink(item.href, item.label)}
+                className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/70 hover:text-white transition-all duration-300 w-fit"
+              >
+                {item.label}
+                <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Socials */}
         <div className="space-y-4">
           <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/40">Socials</p>
@@ -81,27 +103,6 @@ export default function Footer() {
               LinkedIn
               <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
             </button>
-          </div>
-        </div>
-
-        {/* Legal */}
-        <div className="space-y-4">
-          <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/40">Legal</p>
-          <div className="space-y-3">
-            {[
-              { label: "Terms of Agreement", href: "/terms-of-agreement" },
-              { label: "Copyright Regulations", href: "/copyright-regulations" },
-              { label: "Cookie Settings", href: "/cookie-settings" },
-            ].map((item) => (
-              <button
-                key={item.href}
-                onClick={() => handleInternalLink(item.href, item.label)}
-                className="group flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-white/70 hover:text-white transition-all duration-300 w-fit"
-              >
-                {item.label}
-                <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-              </button>
-            ))}
           </div>
         </div>
       </div>

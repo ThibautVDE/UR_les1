@@ -6,7 +6,6 @@ import Footer from "@/components/Footer"
 import Script from "next/script"
 import GoogleAnalyticsTracker from "@/components/GoogleAnalyticsTracker"
 import "./globals.css"
-import SocialShare from "@/components/SocialShare"
 
 export const metadata: Metadata = {
   title: "Thibaut Vanden Eynden | Portfolio",
@@ -111,7 +110,6 @@ export default function RootLayout({
           {/* Google Analytics page view tracker */}
           <GoogleAnalyticsTracker />
           <GlobalNavbar />
-          <SocialShare />  {/* ← dit toevoegen */}
           {/* De main content groeit om de footer naar beneden te duwen */}
           <main className="grow pt-24">
             {children}
